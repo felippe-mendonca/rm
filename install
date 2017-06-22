@@ -69,10 +69,10 @@ function install::aria {
 }
 
 function install::arma {
-    wget https://sourceforge.net/projects/arma/files/armadillo-7.900.1.tar.xz
-    tar -xf armadillo-7.900.1.tar.xz
-    rm armadillo-7.900.1.tar.xz
-    cd armadillo-7.900.1
+    wget http://sourceforge.net/projects/arma/files/armadillo-7.950.1.tar.xz
+    tar -xf armadillo-7.950.1.tar.xz
+    rm armadillo-7.950.1.tar.xz
+    cd armadillo-7.950.1
     ./configure
     cmake .
     make -j `nproc`
