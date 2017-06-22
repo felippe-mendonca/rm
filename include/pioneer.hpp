@@ -123,6 +123,23 @@ struct Pioneer {
     robot.unlock();
   }
 
+  mat get_telemetry() {
+    robot.lock();
+    ArPose arpose = robot.getPose();
+    double linear = robot.getVel();
+    double angular = robot.getRotVel();
+    robot.unlock();
+    mat telemetry;
+    // clang-format off
+    telemetry << arpose.getX() << endr 
+              << arpose.getY() << endr 
+              << deg2rad(arpose.getTh()) << endr 
+              << linear << endr
+              << deg2rad(angular);
+    // clang-format on
+    return telemetry;
+  }
+
  private:
   void initialize() {
     robot.lock();
@@ -174,6 +191,8 @@ struct Pioneer {
   }
 
   mat get_pose() { return request(RobotRequest::GET_POSE); }
+
+  mat get_telemetry() { return request(RobotRequest::GET_TELEMETRY); }
 
  private:
   mat request(RobotRequest const& req_type, vec const& req_vec = vec()) {

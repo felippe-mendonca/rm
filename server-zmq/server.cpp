@@ -49,6 +49,12 @@ int main(int argc, char* argv[]) {
 				cout << "[Request][GET_SPEED]\n";
 				break;
       }
+      case RobotRequest::GET_TELEMETRY: {
+        auto telemetry = robot.get_telemetry();
+        robot_rep = std::make_tuple(RobotReply::SUCCESS, conv_to<std::vector<double>>::from(telemetry));
+				cout << "[Request][GET_TELEMETRY]\n";
+        break;
+      }
 			case RobotRequest::SET_POSE: {
 				auto pose = conv_to<mat>::from(request_data);
         robot.set_pose(pose);
