@@ -83,6 +83,7 @@ function install::arma {
 function install::zmq {
     read path
     cd $path
+    git checkout 7005f22
     ./autogen.sh
 	./configure --with-pgm
     make install -j `nproc`
